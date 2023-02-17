@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentitube</title>
+    <style>
+      h1 {
+        text-align: center;
+        color: whitesmoke;
+      }
+      body {
+        background-color: black;
+        width: max-content;
+        max-width: 800px;
+      }
+      button {
+        background-color: red;
+        color: white;
+        border-radius: 8px;
+        width: max-content;
+        height: max-content;
+        padding: 10px;
+        font-size: large;
+        margin: auto;
+        display: block;
+        border-color: coral;
+      }
+      button[disabled] {
+        background-color: lightcoral;
+        color: white;
+        border-radius: 8px;
+        width: max-content;
+        height: max-content;
+        padding: 10px;
+        font-size: large;
+        margin: auto;
+        display: block;
+        border-color: lightpink;
+      }
+      #results {
+        font-size: medium;
+        color: whitesmoke;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SentiTube</h1>
+    <button id="analyse" type="button">Analyse</button>
+    <br />
+    <div id="results"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
