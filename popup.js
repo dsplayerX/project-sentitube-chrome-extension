@@ -1,4 +1,35 @@
 const btn = document.getElementById("analyse");
+
+function drawDoughnutChart(data) {
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var chartData = {
+    labels: ["Positive", "Negative", "Neutral", "Sarcastic", "Non-Sarcastic"],
+    datasets: [
+      {
+        label: "Comment Sentiment",
+        data: [
+          data.positiveCount,
+          data.negativeCount,
+          data.neutralCount,
+          data.sarcasticCount,
+          data.nonSarcasticCount,
+        ],
+        backgroundColor: [
+          "#32CD32",
+          "#FF6347",
+          "#FFFF00",
+          "#800080",
+          "#4169E1",
+        ],
+      },
+    ],
+  };
+  var myChart = new Chart(ctx, {
+    type: "doughnut",
+    data: chartData,
+  });
+}
+
 btn.addEventListener("click", function () {
   btn.disabled = true;
   btn.innerHTML = "Analysing...";
