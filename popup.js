@@ -1,18 +1,18 @@
 const btn = document.getElementById("analyse");
 
+// function to draw a doughnut chart
 function drawDoughnutChart(data) {
   var ctx = document.getElementById("myChart").getContext("2d");
   var chartData = {
     labels: ["Positive", "Negative", "Neutral", "Sarcastic", "Non-Sarcastic"],
     datasets: [
       {
-        label: "Comment Sentiment",
         data: [
-          data.positiveCount,
-          data.negativeCount,
-          data.neutralCount,
-          data.sarcasticCount,
-          data.nonSarcasticCount,
+          data["Positive Comments"],
+          data["Neutral Comments"],
+          data["Negative Comments"],
+          data["Sarcastic Comments"],
+          data["Nonsarcastic Comments"]
         ],
         backgroundColor: [
           "#32CD32",
@@ -54,7 +54,9 @@ btn.addEventListener("click", function () {
             valueSpan.innerHTML = data[prop];
             propDiv.appendChild(nameSpan);
             propDiv.appendChild(valueSpan);
-            resultDiv.appendChild(propDiv);
+            resultDiv.appendChild(propDiv);\
+            // draw the graph
+            drawDoughnutChart(data);
           }
         }
       }
