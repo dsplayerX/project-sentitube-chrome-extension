@@ -5,20 +5,41 @@
     <!--  -->
     <script src="chart.js"></script>
     <style>
-      h1 {
-        text-align: center;
-        color: rgb(0, 0, 0);
-      }
       body {
-        background-color: rgb(255, 255, 255);
-        width: max-content;
+        background-color: whitesmoke;
+        min-width: 400px;
+        min-height: 200px;
         max-width: 800px;
         height: max-content;
       }
+
+      h1 {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 42px;
+        margin-bottom: 0%;
+      }
+
+      h2 {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+        margin-left: 120px;
+        margin-top: 0%;
+      }
+
+      h3 {
+        text-align: center;
+        color: rgb(106, 106, 106);
+        font-size: 18px;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+
       button {
         background-color: red;
         color: white;
-        border-radius: 8px;
+        border-radius: 10px;
         width: max-content;
         height: max-content;
         padding: 10px;
@@ -30,7 +51,7 @@
       button[disabled] {
         background-color: lightcoral;
         color: white;
-        border-radius: 8px;
+        border-radius: 10px;
         width: max-content;
         height: max-content;
         padding: 10px;
@@ -47,10 +68,16 @@
     </style>
   </head>
   <body>
-    <h1>SentiTube</h1>
-    <button id="analyse" type="button">Analyse</button>
-    <br />
-    <div id="results"></div>
-    <script src="popup.js"></script>
+    <div class="background-container">
+      <h1>SentiTube</h1>
+      <h2>by phoeniX</h2>
+      <h3 id="phrase">
+        Sentiment and Sarcasm Analysis on YouTube Comment Section
+      </h3>
+      <button id="analyse" type="button">Analyse</button>
+      <br />
+      <div id="results"></div>
+      <script src="popup.js"></script>
+    </div>
   </body>
 </html>

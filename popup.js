@@ -1,7 +1,7 @@
 const analyseBtn = document.getElementById("analyse");
 analyseBtn.addEventListener("click", function () {
   analyseBtn.disabled = true;
-  analyseBtn.innerHTML = "Analysing...";
+  analyseBtn.innerHTML = "Analysing";
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     const url = tabs[0].url;
     const xhr = new XMLHttpRequest();
@@ -15,6 +15,8 @@ analyseBtn.addEventListener("click", function () {
         const data = JSON.parse(xhr.responseText);
         const totalComments = data["Total Comments"];
         const resultsDiv = document.getElementById("results");
+        const phraseText = document.getElementById("phrase");
+
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
           <h4>SentiTube Results:</h4>
@@ -22,11 +24,11 @@ analyseBtn.addEventListener("click", function () {
             <canvas id="sentitubeChart"></canvas>
           </div>
           <h4>Sentiment Analysis:</h4>
-          <div style="width: 100%">
+          <div style="width: 50%">
             <canvas id="sentimentChart"></canvas>
           </div>
           <h4>Sarcasm Analysis:</h4>
-          <div style="width: 100%">
+          <div style="width: 50%">
             <canvas id="sarcasmChart"></canvas>
           </div>
           <h5>Total analysed comments: ${totalComments}</h5>
@@ -37,7 +39,7 @@ analyseBtn.addEventListener("click", function () {
           .getElementById("sentitubeChart")
           .getContext("2d");
         const sentitubeChartData = {
-          labels: ["Positive", "Negative"],
+          labels: ["SentiPositive", "SentiNegative"],
           datasets: [
             {
               label: "Sentitube Results",
@@ -107,11 +109,13 @@ analyseBtn.addEventListener("click", function () {
           data: sarcasmChartData,
           options: sarcasmChartOptions,
         });
+        analyseBtn.style.display = "none";
+        phraseText.style.display = "none";
       } else {
         const resultsDiv = document.getElementById("results");
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
-          <h5>ERROR: Make sure you are on a YouTube video.</h5>
+          <h5>Error! Make sure the current tab is a YouTube video.</h5>
           `;
       }
       analyseBtn.disabled = false;
