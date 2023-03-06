@@ -19,19 +19,23 @@ analyseBtn.addEventListener("click", function () {
 
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
+          <hr style="width: 90%">
           <h4>SentiTube Results:</h4>
-          <div style="width: 100%">
+          <div style="width: 100%; margin-bottom:15px">
             <canvas id="sentitubeChart"></canvas>
           </div>
-          <h4>Sentiment Analysis:</h4>
-          <div style="width: 50%">
-            <canvas id="sentimentChart"></canvas>
+          <hr style="width: 90%">
+          <h4>Sentiment & Sarcasm Analysis:</h4>
+          <div style="display:flex; flex-wrap:wrap; justify-content: space-between;">
+            <div style="width: 40%; margin-left:25px">
+              <canvas id="sentimentChart"></canvas>
+            </div>
+            <div style="width: 40%; margin-top:25px; margin-left:25px"">
+              <canvas id="sarcasmChart"></canvas>
+            </div>
           </div>
-          <h4>Sarcasm Analysis:</h4>
-          <div style="width: 50%">
-            <canvas id="sarcasmChart"></canvas>
-          </div>
-          <h5>Total analysed comments: ${totalComments}</h5>
+          <h5 style="text-align: center;">Total analysed comments: ${totalComments}</h5>
+          <p style="text-align: center; font-size: 14px;">For more analytics results visit our website.</p>
         `;
 
         // Create the sentiment chart
