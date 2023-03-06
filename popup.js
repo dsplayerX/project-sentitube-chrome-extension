@@ -20,12 +20,12 @@ analyseBtn.addEventListener("click", function () {
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
           <hr style="width: 90%">
-          <h4>SentiTube Results:</h4>
+          <h4>SentiTube Results</h4>
           <div style="width: 100%; margin-bottom:15px">
             <canvas id="sentitubeChart"></canvas>
           </div>
           <hr style="width: 90%">
-          <h4>Sentiment & Sarcasm Analysis:</h4>
+          <h4>Sentiment & Sarcasm Analysis</h4>
           <div style="display:flex; flex-wrap:wrap; justify-content: space-between;">
             <div style="width: 40%; margin-left:25px">
               <canvas id="sentimentChart"></canvas>
@@ -35,7 +35,11 @@ analyseBtn.addEventListener("click", function () {
             </div>
           </div>
           <h5 style="text-align: center;">Total analysed comments: ${totalComments}</h5>
-          <p style="text-align: center; font-size: 14px;">For more analytics results visit our website.</p>
+          <hr style="width: 90%">
+          <p style="text-align: center; font-size: 12px; color: rgb(106, 106, 106); margin-left: 5%; margin-right: 5%;">
+          Please note that the analysis provided by SentiTube Chrome extension is limited to the top 200 comments.<br>
+          For a more comprehensive analysis and per-comment insights, please visit our website.<br>
+          Thank you for using our extension.</p>
         `;
 
         // Create the sentiment chart
@@ -117,9 +121,14 @@ analyseBtn.addEventListener("click", function () {
         phraseText.style.display = "none";
       } else {
         const resultsDiv = document.getElementById("results");
+        const phraseText = document.getElementById("phrase");
+        analyseBtn.style.display = "none";
+        phraseText.style.display = "none";
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
-          <h5>Error! Make sure the current tab is a YouTube video.</h5>
+          <hr style="width: 90%">
+          <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
+          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Make sure the current tab is a YouTube video.</h5>
           `;
       }
       analyseBtn.disabled = false;

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SentiTube",
   "description": "An extension that analyses Sentiments and Sarcasm in YouTube comments",
-  "version": "2.0",
+  "version": "2.1",
   "permissions": ["activeTab", "declarativeContent"],
   "host_permissions": ["http://127.0.0.1:5000/*"],
   "action": {
