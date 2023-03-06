@@ -17,6 +17,10 @@ analyseBtn.addEventListener("click", function () {
         const resultsDiv = document.getElementById("results");
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
+          <h4>SentiTube Results:</h4>
+          <div style="width: 100%">
+            <canvas id="sentitubeChart"></canvas>
+          </div>
           <h4>Sentiment Analysis:</h4>
           <div style="width: 100%">
             <canvas id="sentimentChart"></canvas>
@@ -25,8 +29,32 @@ analyseBtn.addEventListener("click", function () {
           <div style="width: 100%">
             <canvas id="sarcasmChart"></canvas>
           </div>
-          <h5>Total comments: ${totalComments}</h5>
+          <h5>Total analysed comments: ${totalComments}</h5>
         `;
+
+        // Create the sentiment chart
+        const sentitubeChartCtx = document
+          .getElementById("sentitubeChart")
+          .getContext("2d");
+        const sentitubeChartData = {
+          labels: ["Positive", "Negative"],
+          datasets: [
+            {
+              label: "Sentitube Results",
+              data: [data["Sentitube Positve"], data["Sentitube Negative"]],
+              backgroundColor: ["#2ecc71", "#e74c3c"],
+            },
+          ],
+        };
+        const sentitubeChartOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+        };
+        const sentitubeChart = new Chart(sentitubeChartCtx, {
+          type: "pie",
+          data: sentitubeChartData,
+          options: sentitubeChartOptions,
+        });
 
         // Create the sentiment chart
         const sentimentChartCtx = document
@@ -79,6 +107,12 @@ analyseBtn.addEventListener("click", function () {
           data: sarcasmChartData,
           options: sarcasmChartOptions,
         });
+      } else {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.style.display = "block";
+        resultsDiv.innerHTML = `
+          <h5>ERROR: Make sure you are on a YouTube video.</h5>
+          `;
       }
       analyseBtn.disabled = false;
       analyseBtn.innerHTML = "Analyse";
