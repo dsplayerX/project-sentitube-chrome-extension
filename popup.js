@@ -38,7 +38,7 @@ analyseBtn.addEventListener("click", function () {
           <hr style="width: 90%">
           <p style="text-align: center; font-size: 12px; color: rgb(106, 106, 106); margin-left: 5%; margin-right: 5%;">
           Please note that the analysis provided by SentiTube Chrome extension is limited to the top 200 comments.<br>
-          For a more comprehensive analysis and per-comment insights, please visit our website.<br>
+          For a more comprehensive analysis, custom feedback and per-comment insights, please visit our website.<br>
           Thank you for using our extension.</p>
         `;
 
