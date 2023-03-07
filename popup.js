@@ -37,7 +37,7 @@ analyseBtn.addEventListener("click", function () {
           <h5 style="text-align: center;">Total analysed comments: ${totalComments}</h5>
           <hr style="width: 90%">
           <p style="text-align: center; font-size: 12px; color: rgb(106, 106, 106); margin-left: 5%; margin-right: 5%;">
-          Please note that the analysis provided by SentiTube Chrome extension is limited to the top 200 comments.<br>
+          Please note that the analysis provided by SentiTube Chrome extension is limited to the top 300 comments.<br>
           For a more comprehensive analysis, custom feedback and per-comment insights, please visit our website.<br>
           Thank you for using our extension.</p>
         `;
@@ -61,7 +61,7 @@ analyseBtn.addEventListener("click", function () {
           maintainAspectRatio: false,
         };
         const sentitubeChart = new Chart(sentitubeChartCtx, {
-          type: "pie",
+          type: "doughnut",
           data: sentitubeChartData,
           options: sentitubeChartOptions,
         });
@@ -89,7 +89,7 @@ analyseBtn.addEventListener("click", function () {
           maintainAspectRatio: false,
         };
         const sentimentChart = new Chart(sentimentChartCtx, {
-          type: "pie",
+          type: "doughnut",
           data: sentimentChartData,
           options: sentimentChartOptions,
         });
@@ -113,7 +113,7 @@ analyseBtn.addEventListener("click", function () {
           maintainAspectRatio: false,
         };
         const sarcasmChart = new Chart(sarcasmChartCtx, {
-          type: "pie",
+          type: "doughnut",
           data: sarcasmChartData,
           options: sarcasmChartOptions,
         });
