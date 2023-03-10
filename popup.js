@@ -1,21 +1,42 @@
 const analyseBtn = document.getElementById("analyse");
+const resultsDiv = document.getElementById("results");
+const phraseText = document.getElementById("phrase");
 analyseBtn.addEventListener("click", function () {
   analyseBtn.disabled = true;
   analyseBtn.innerHTML = "Analysing";
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     const url = tabs[0].url;
     const xhr = new XMLHttpRequest();
+    xhr.timeout = 10000;
     xhr.open(
       "GET",
       "http://127.0.0.1:5000/extensionresults?userinput=" + url,
       true
     );
+    xhr.onerror = function () {
+      analyseBtn.style.display = "none";
+      phraseText.style.display = "none";
+      resultsDiv.style.display = "block";
+      resultsDiv.innerHTML = `
+        <hr style="width: 90%">
+        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
+        <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Failed to make the request to API. This may have been caused by a server issue.</h5>
+        `;
+    };
+    xhr.ontimeout = function () {
+      analyseBtn.style.display = "none";
+      phraseText.style.display = "none";
+      resultsDiv.style.display = "block";
+      resultsDiv.innerHTML = `
+        <hr style="width: 90%">
+        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
+        <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Your request has timed out. Please try again!</h5>
+        `;
+    };
     xhr.onload = function () {
       if (xhr.status === 200) {
         const data = JSON.parse(xhr.responseText);
         const totalComments = data["Total Comments"];
-        const resultsDiv = document.getElementById("results");
-        const phraseText = document.getElementById("phrase");
 
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
@@ -120,15 +141,14 @@ analyseBtn.addEventListener("click", function () {
         analyseBtn.style.display = "none";
         phraseText.style.display = "none";
       } else {
-        const resultsDiv = document.getElementById("results");
-        const phraseText = document.getElementById("phrase");
         analyseBtn.style.display = "none";
         phraseText.style.display = "none";
         resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `
           <hr style="width: 90%">
           <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
-          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Make sure the current tab is a YouTube video.</h5>
+          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px; margin-left:15px; margin-right:15px">Make sure the current active tab is a YouTube video and the comment section isn't disabled.</h5>
+          
           `;
       }
       analyseBtn.disabled = false;
