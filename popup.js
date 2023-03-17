@@ -20,7 +20,7 @@ analyseBtn.addEventListener("click", function () {
       resultsDiv.style.display = "block";
       resultsDiv.innerHTML = `
         <hr style="width: 90%">
-        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
+        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Request Error!</h5>
         <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Failed to make the request to API. This may have been caused by a server issue.</h5>
         `;
     };
@@ -30,7 +30,7 @@ analyseBtn.addEventListener("click", function () {
       resultsDiv.style.display = "block";
       resultsDiv.innerHTML = `
         <hr style="width: 90%">
-        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
+        <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Timeout Error!</h5>
         <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px">Your request has timed out. Please try again!</h5>
         `;
     };
@@ -141,6 +141,25 @@ analyseBtn.addEventListener("click", function () {
         });
         analyseBtn.style.display = "none";
         phraseText.style.display = "none";
+      } else if (xhr.status === 503) {
+        analyseBtn.style.display = "none";
+        phraseText.style.display = "none";
+        resultsDiv.style.display = "block";
+        resultsDiv.innerHTML = `
+          <hr style="width: 90%">
+          <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Server Error!</h5>
+          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px; margin-left:15px; margin-right:15px">Server is temporarily unavailable and cannot handle the request at the moment.</h5>
+          `;
+      } else if (xhr.status === 500) {
+        analyseBtn.style.display = "none";
+        phraseText.style.display = "none";
+        resultsDiv.style.display = "block";
+        resultsDiv.innerHTML = `
+          <hr style="width: 90%">
+          <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Internal Server Error!</h5>
+          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px; margin-left:15px; margin-right:15px">The server encountered an error while processing the request. Make sure the current active tab is a YouTube video and the comment section isn't disabled.</h5>
+          
+          `;
       } else {
         analyseBtn.style.display = "none";
         phraseText.style.display = "none";
@@ -148,8 +167,7 @@ analyseBtn.addEventListener("click", function () {
         resultsDiv.innerHTML = `
           <hr style="width: 90%">
           <h5 style="text-align: center; font-size: 16px; color: red; margin-top:20px; margin-bottom:10px">Error!</h5>
-          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px; margin-left:15px; margin-right:15px">Make sure the current active tab is a YouTube video and the comment section isn't disabled.</h5>
-          
+          <h5 style="text-align: center; font-size: 14px; margin-top:10px; margin-bottom:20px; margin-left:15px; margin-right:15px">Encountered an unknown error. Please try again in a moment or <a href="https://dsplayerx.github.io/project-sentitube-webapp/#/Contact">Contact SentiTube</a>.</h5>
           `;
       }
       analyseBtn.disabled = false;
