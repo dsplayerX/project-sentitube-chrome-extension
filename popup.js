@@ -59,7 +59,7 @@ analyseBtn.addEventListener("click", function () {
           <h5 style="text-align: center;">Total analysed comments: ${totalComments}</h5>
           <hr style="width: 90%">
           <p style="text-align: center; font-size: 12px; color: rgb(106, 106, 106); margin-left: 5%; margin-right: 5%;">
-          Please note that the analysis provided by SentiTube Chrome extension is limited to the top 300 comments.<br>
+          Please note that the analysis provided by SentiTube Chrome extension is limited to the top ~300 comments.<br>
           For a more comprehensive analysis, custom feedback and per-comment insights, please <a href="https://dsplayerx.github.io/project-sentitube-webapp/" target="_blank">visit our website<a/>.<br>
           Thank you for using our extension.</p>
         `;
